@@ -11,12 +11,12 @@ Inside the `server/boot` folder are placed the scripts that runs at server boot 
 ## Starting the server
 *PLEASE BE CAREFUL: Be sure that a mongodb instance is running before attempting to start the server*
 
-To start the server open the terminal inside the cocity-backend folder and write this command:
+To start the server open the terminal inside the project folder and write this command:
 
 ``` bash
 node .
 ```
-This repository contains the back end code of the cocity project
+This repository contains the back end code of the CommonsHood dapp
 
 #### Technologies
 - Loopback
