@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Message": {
+    "dataSource": null
+  },
+  "Person": {
+    "dataSource": "cocityDS",
+    "public": true
+  },
+  "token": {
+    "dataSource": "cocityDS",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "authToken": true
+        }
+      }
+    }
+  },
+  "Wallet": {
+    "dataSource": "cocityDS",
+    "public": true
+  },
+  "Resource": {
+    "dataSource": "cocityDS",
+    "public": true
+  },
+  "Error": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Bank": {
+    "dataSource": "cocityDS",
+    "public": true
+  }
+}

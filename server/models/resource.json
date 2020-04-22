@@ -1,0 +1,148 @@
+{
+    "name": "Resource",
+    "plural": "Resources",
+    "base": "PersistedModel",
+    "idInjection": false,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "uuid": {
+        "type": "string",
+        "required": false
+      },
+      "name": {
+        "type": "string",
+        "required": false
+      },
+      "owner": {
+        "type": "string",
+        "required": false
+      },
+      "size": {
+        "type": "number",
+        "required": true
+      },
+      "mimetype": {
+        "type": "string",
+        "required": false
+      },
+      "ext": {
+        "type": "string",
+        "required": false
+      },
+      "url": {
+        "type": "string",
+        "required": false
+      },
+      "hash": {
+          "type": "string",
+          "required": false
+      },
+      "timestamp": {
+          "type": "date",
+          "required": false
+      }
+    },
+    "validations": [],
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "Person",
+        "foreignKey": "userId"
+      }
+    },
+    "acls": [
+      {
+        "accessType": "EXECUTE",
+        "principalType": "ROLE",
+        "principalId": "$authenticated",
+        "permission": "ALLOW",
+        "property": "upload"
+      },
+      {
+        "accessType": "EXECUTE",
+        "principalType": "ROLE",
+        "principalId": "$authenticated",
+        "permission": "ALLOW",
+        "property": "getById"
+      },
+      {
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$unauthenticated",
+        "permission": "DENY"
+      }
+    ],
+    "methods": {
+        "upload": {
+            "http": {
+            "path": "/upload",
+            "verb": "post"
+            },
+            "accepts": [
+            {
+              "arg": "request",
+              "type": "object",
+              "http": {
+              "source": "req"
+                }
+            },
+            {
+              "arg": "response",
+              "type": "object",
+              "http": {
+                "source": "res"
+              }
+            },
+            {
+              "arg": "file",
+              "type": "file",
+              "required": false
+            }
+            ],
+            "returns": [
+            {
+              "arg": "file",
+              "type": "object"
+            }
+            ]
+        },
+        "download": {
+          "http": {
+          "path": "/get/:id",
+          "verb": "get"
+          },
+          "accepts": [
+          {
+              "arg": "request",
+              "type": "object",
+              "http": {
+              "source": "req"
+              }
+          },
+          {
+              "arg": "response",
+              "type": "object",
+              "http": {
+                  "source": "res"
+              }
+          },
+          {
+            "arg": "id",
+            "type": "any",
+            "required": "true",
+            "http": {
+              "source": "path"
+            }
+          }
+          ],
+          "returns": [
+            {
+              "arg": "file",
+              "type": "object"
+            }
+          ]
+      }
+    }
+  }

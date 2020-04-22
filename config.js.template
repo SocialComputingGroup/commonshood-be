@@ -1,0 +1,36 @@
+const env = process.env.NODE_ENV
+
+const development = {
+  app: {
+    https: false,
+    logLevel: 'debug',
+    resourceDriver: 'fs',
+    defaultUserPassword: 'pippoJumbo24'
+  }
+}
+
+const test = {
+  app: {
+    https: false,
+    logLevel: 'debug',
+    resourceDriver: 'fs',
+    defaultUserPassword: 'pippoJumbo24'
+  }
+}
+
+const production = {
+  app: {
+    https: false,
+    logLevel: 'info',
+    resourceDriver: 'ipfs',
+    defaultUserPassword: 'pippoJumbo24'
+  }
+}
+
+const config = {
+  development,
+  production,
+  test,
+}
+
+module.exports = config[env]

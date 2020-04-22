@@ -1,0 +1,201 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "datastore": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "mongodb://localhost/db?maxPoolSize=50",
+    "database": "db",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "connector": "mongodb",
+    "allowExtendedOperators": true
+  },
+  "oauthServer": {
+    "name": "oauthServer",
+    "baseURL": "https://oauthserver",
+    "options": {
+      "strictSSL": false
+    },
+    "operations": [
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://oauthserver/token",
+          "body": {
+            "code": "{authorizationCode}",
+            "grant_type": "authorization_code"
+          }
+        },
+        "functions": {
+          "authorize": [
+            "authorizationCode"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://oauthserver/oauth/logout",
+          "headers": {
+            "Authorization": "Bearer {token}"
+          },
+          "query": {
+            "redirect_uri": "{redirect}"
+          }
+        },
+        "functions": {
+          "logout": [
+            "token",
+            "redirect"
+          ]
+        }
+      }
+    ],
+    "crud": false,
+    "connector": "rest"
+  },
+  "oauthServerGoogle": {
+    "name": "oauthServerGoogle",
+    "baseURL": "https://www.googleapis.com/",
+    "options": {
+      "strictSSL": false
+    },
+    "operations": [
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://www.googleapis.com/oauth2/v4/token",
+          "headers": {
+            "content-type": "application/json"
+          },
+          "query": {
+            "code": "{authorizationCode}",
+            "grant_type": "authorization_code",
+            "client_id": "clientID",
+            "client_secret": "ClientSecret",
+            "redirect_uri": "http://redirectURI"
+          }
+        },
+        "functions": {
+          "authorize": [
+            "authorizationCode"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://www.googleapis.com/oauth2/v1/userinfo",
+          "headers": {
+            "Authorization": "Bearer {access_token}"
+          }
+        },
+        "functions": {
+          "getUserInfo": [
+            "access_token"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://www.googleapis.com/plus/v1/people/me",
+          "headers": {
+            "Authorization": "Bearer {access_token}"
+          }
+        },
+        "functions": {
+          "getUserInfoOld": [
+            "access_token"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "https://www.googleapis.com/oauth2/v2/tokeninfo",
+          "headers": {
+            "Authorization": "Bearer {access_token}"
+          },
+          "query": {
+            "access_token": "{access_token}"
+          }
+        },
+        "functions": {
+          "getTokenInfo": [
+            "access_token"
+          ]
+        }
+      }
+    ],
+    "crud": false,
+    "connector": "rest"
+  },
+  "oauthServerFacebook": {
+    "name": "oauthServerFacebook",
+    "baseURL": "https://graph.facebook.com",
+    "options": {
+      "strictSSL": false
+    },
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://graph.facebook.com/v2.12/oauth/access_token",
+          "headers": {},
+          "query": {
+            "code": "{authorizationCode}",
+            "client_id": "ClientID",
+            "client_secret": "ClientSecret",
+            "redirect_uri": "http://redirectURI"
+          }
+        },
+        "functions": {
+          "authorize": [
+            "authorizationCode"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://graph.facebook.com/v3.1/me",
+          "headers": {
+            "Authorization": "Bearer {access_token}"
+          },
+          "query": {
+            "fields": "id,name,email,first_name,last_name"
+          }
+        },
+        "functions": {
+          "getUserInfo": [
+            "access_token"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "https://graph.facebook.com/v3.1/debug_token",
+          "headers": {
+            "Authorization": "Bearer {access_token}"
+          },
+          "query": {
+            "input_token": "{access_token}"
+          }
+        },
+        "functions": {
+          "getTokenInfo": [
+            "access_token"
+          ]
+        }
+      }
+    ],
+    "crud": false,
+    "connector": "rest"
+  }
+}

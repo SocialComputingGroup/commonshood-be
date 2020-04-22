@@ -1,0 +1,67 @@
+{
+  "name": "Person",
+  "plural": "Persons",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "birthdate": {
+      "type": "date",
+      "required": false
+    },
+    "password": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "token",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    },
+    "wallets": {
+      "type": "embedsOne",
+      "model": "Wallet",
+      "foreignKey": "_id",
+      "options": {
+        "disableInclude": false
+      }
+    },
+    "coins": {
+      "type": "hasMany",
+      "model": "Coin",
+      "foreignKey": "userId"
+    },
+    "daos": {
+      "type": "hasMany",
+      "model": "DAO",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}
