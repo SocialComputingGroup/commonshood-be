@@ -1,5 +1,3 @@
-[![pipeline status](https://gitlab.di.unito.it/utbi/cocity-backend/badges/master/pipeline.svg)](https://gitlab.di.unito.it/utbi/cocity-backend/commits/master)
-
 # CommonsHood Backend Repository
 This repository contains the server side implementation of the CommonsHood dapp. We use Strongloop Loopback as RESTful API framework.
 
