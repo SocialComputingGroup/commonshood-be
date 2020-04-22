@@ -20,8 +20,9 @@
     "loopback": "^3.18.2",
     "loopback-boot": "^2.27.1",
     "loopback-component-explorer": "^5.3.0",
-    "loopback-connector-mongodb": "^1.18.1",
+    "loopback-connector-mongodb": ">=3.6.0",
     "loopback-connector-rest": "^3.1.0",
+    "swagger-ui": ">=3.23.11",
     "mongodb": "^3.0.4",
     "multer": "^1.4.1",
     "multihashes": "^0.4.14",
@@ -49,3 +50,4 @@
   "license": "GPL-3.0-only",
   "description": "cocity-backend"
 }
+
