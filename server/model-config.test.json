@@ -47,10 +47,6 @@
       }
     }
   },
-  "Wallet": {
-    "dataSource": "cocityDS",
-    "public": true
-  },
   "Resource": {
     "dataSource": "cocityDS",
     "public": true

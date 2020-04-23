@@ -75,11 +75,9 @@ module.exports = function(Token) {
                   Token.replaceById(token.id, token, function(err, obj) {
                     if (err) cb(err)
                     else {
-                      usefulFunc.createWallet(app, instance.id).then(wallet => {
                         cb(null, token.id, token.refresh_token, token.member_id,
                           token.expires_at, token.member, token.token_type, token.ttl,
                           token.created, token.scopes, token.userId)
-                      })
                     }
                   })
                 })
@@ -187,11 +185,9 @@ module.exports = function(Token) {
                     Token.replaceById(token.id, token, function(err, obj) {
                       if (err) logger.error(JSON.stringify(err))
                       else {
-                        usefulFunc.createWallet(app, instance.id).then(wallet => {
                           cb(null, token.id, token.refresh_token, token.member_id,
                             token.expires_at, token.member, token.token_type, token.ttl,
                             token.created, token.scopes, token.userId)
-                        })
                       }
                     })
                   })
@@ -219,11 +215,9 @@ module.exports = function(Token) {
                     Token.replaceById(token.id, token, function(err, obj) {
                       if (err) logger.error(JSON.stringify(err))
                       else {
-                        usefulFunc.createWallet(app, instance.id).then(wallet => {
                           cb(null, token.id, token.refresh_token, token.member_id,
                             token.expires_at, token.member, token.token_type, token.ttl,
                             token.created, token.scopes, token.userId)
-                        })
                       }
                     })
                   })
@@ -316,11 +310,9 @@ module.exports = function(Token) {
               Token.replaceById(token.id, token, function(err, obj) {
                 if (err) logger.error(JSON.stringify(err))
                 else {
-                  usefulFunc.createWallet(app, instance.id).then(wallet => {
                     cb(null, token.id, token.refresh_token, token.member_id,
                       token.expires_at, token.member, token.token_type, token.ttl,
                       token.created, token.scopes, token.userId)
-                  })
                 }
               })
             })
